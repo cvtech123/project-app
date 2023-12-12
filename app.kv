@@ -1,0 +1,215 @@
+#: import WipeTransition kivy.uix.screenmanager.WipeTransition
+
+WindowManager:
+
+    MainWindow:
+    SecondWindow:
+    ThirdWindow:
+    FourthWindow:
+    FifthWindow:
+
+<MainWindow>:
+
+
+    name : "main"
+    MDBoxLayout:
+
+
+        orientation: "vertical"
+        md_bg_color: "#1E1E15"
+
+        MDTopAppBar:
+            title: "Muscovado Sugar-Sight"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "16dp"
+            spacing: "50dp"
+
+
+            MDIconButton:
+                icon: "logo1.png"
+                icon_size: "250sp"
+                theme_text_color: "Primary"
+                pos_hint: {"center_x": 0.5}
+                padding: [0, 0, 0, 0]  # Add top padding here
+            MDFillRoundFlatButton:
+                text: "GET STARTED"
+                pos_hint: {"center_x": 0.5, "center_y": 0}
+                size_hint_x: 0.5  # Allows you to set a specific width
+                width: "10dp"  # Adjust the width as desired
+                elevation: 10
+                on_release:
+                    root.manager.transition = WipeTransition()
+                    app.root.current = "second"
+
+
+
+
+
+
+
+
+            MDLabel:
+                text: "Developed by BSCS-4 Students"
+                halign: "center"
+                font_size: "10sp"  # Set the font size for the footer button text
+
+
+<SecondWindow>:
+
+    name : "second"
+    MDBoxLayout:
+
+        orientation: "vertical"
+        md_bg_color: "#1E1E15"
+
+        MDTopAppBar:
+            title: "Home"
+            halign: "center"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "16dp"
+            spacing: "50dp"
+
+
+            MDIconButton:
+                icon: "camera.png"
+                icon_size: "250sp"
+                theme_text_color: "Primary"
+                pos_hint: {"center_x": 0.5}
+                padding: [0, 0, 0, 0]  # Add top padding here
+                on_release:
+                    app.root.current = "Third"
+
+            MDFillRoundFlatButton:
+                text: "About Us"
+                pos_hint: {"center_x": 0.5, "center_y": 0}
+                size_hint_x: 0.5  # Allows you to set a specific width
+                width: "10dp"  # Adjust the width as desired
+                on_press:
+            MDFillRoundFlatButton:
+                text: "BACK"
+                pos_hint: {"center_x": 0.5, "center_y": 0}
+                size_hint_x: 0.5  # Allows you to set a specific width
+                width: "10dp"  # Adjust the width as desired
+                on_release:
+                    app.root.current = "main"
+            MDLabel:
+                text: "Developed by BSCS-4 Students"
+                halign: "center"
+                font_size: "10sp"  # Set the font size for the footer button text
+
+
+<ThirdWindow>:
+    name : "Third"
+    MDBoxLayout:
+
+        orientation: "vertical"
+        md_bg_color: "#1E1E15"
+
+        MDTopAppBar:
+            title: "Muscovado Sugar-Sight Capture"
+            halign: "center"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "10dp"
+            spacing: "10dp"
+
+
+            Camera:
+                id: camera
+                resolution: (1080, 1080)
+                play: True
+
+            MDFillRoundFlatButton:
+                text: "CAPTURE"
+                pos_hint: {"center_x": 0.5, "center_y": 0}
+                size_hint_x: 0.5  # Allows you to set a specific width
+                width: "10dp"  # Adjust the width as desired
+                on_press: root.capture_image()
+                on_release:
+                    app.root.current = "Fourth"
+            MDLabel:
+                text: "Developed by BSCS-4 Students"
+                halign: "center"
+                font_size: "10sp"  # Set the font size for the footer button text
+
+
+<FourthWindow>:
+    name : "Fourth"
+    MDBoxLayout:
+
+        orientation: "vertical"
+        md_bg_color: "#1E1E15"
+
+        MDTopAppBar:
+            title: "Image Preview"
+            halign: "center"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "5dp"
+            spacing: "10dp"
+
+            Image:
+                id: captured_image
+                source: 'C:\my_data\myenv_file\Thesis_app\images'
+
+            MDFillRoundFlatButton:
+                text: "PROCEED"
+                pos_hint: {"center_x": 0.5, "center_y": 0}
+                size_hint_x: 0.5  # Allows you to set a specific width
+                width: "10dp"  # Adjust the width as desired
+                on_press: root.predict_cooked_probability()
+                on_release:
+                    app.root.current = "Fifth"
+            MDFillRoundFlatButton:
+                text: "RETAKE"
+                pos_hint: {"center_x": 0.5, "center_y": 0}
+                size_hint_x: 0.5  # Allows you to set a specific width
+                width: "10dp"  # Adjust the width as desired
+                on_release:
+                    app.root.current = "Third"
+                    root.manager.transition.direction = "right"
+            MDLabel:
+                text: "Developed by BSCS-4 Students"
+                halign: "center"
+                font_size: "10sp"  # Set the font size for the footer button text
+<FifthWindow>:
+    name: "Fifth"
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: "#1E1E15"
+        MDTopAppBar:
+            id: md_top_app_bar
+            title: "Result"
+            halign: "center"
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "5dp"
+            spacing: "10dp"
+            Image:
+                id: captured_image
+                source: 'C:\my_data\myenv_file\Thesis_app\images'
+
+            MDFillRoundFlatButton:
+                id: prediction_label
+                text: root.prediction_label_text
+                pos_hint: {"center_x": 0.5, "center_y": 0}
+                size_hint_x: 0.5
+                width: "5dp"
+            MDFillRoundFlatButton:
+                text: "HOME"
+                pos_hint: {"center_x": 0.5, "center_y": 0}
+                size_hint_x: 0.5
+                width: "5dp"
+                on_release:
+                    app.root.current = "main"
+
+            MDLabel:
+                text: "Developed by BSCS-4 Students"
+                halign: "center"
+                font_size: "10sp"
