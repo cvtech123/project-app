@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-#requirements = python3,kivy==2.2.1,kivymd==1.1.1,opencv-python-headless==4.8.1.78,Pillow==8.3.2,numpy==1.26.1,tensorflow==2.15.0,keras==2.15.0
+requirements = python3,kivy==2.2.1,kivymd==1.1.1,opencv-python-headless==4.8.1.78,Pillow==8.3.2,numpy==1.26.1,tensorflow==2.15.0,keras==2.15.0
 
 
 # (str) Custom source folders for requirements
@@ -65,7 +65,7 @@ orientation = portrait
 # author = © Copyright Info
 
 # change the major version of python used by the app
-osx.python_version = 3
+osx.python_version = 3.10.0
 
 # Kivy version to use
 osx.kivy_version = 1.9.1
